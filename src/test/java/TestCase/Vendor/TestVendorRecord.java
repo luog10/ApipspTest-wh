@@ -28,7 +28,7 @@ public class TestVendorRecord {
         //2.4 Appsecret
         apirequestdata.SetAppsecret("admin");
         //2.5 测试业务数据（从文件中读取）
-        apirequestdata.SetBizdata(FileOpHelper.Read("\\Vendor\\vendor.record"));
+        apirequestdata.SetBizdata(FileOpHelper.Read("/Vendor/vendor.record"));
         ApiTestHelper.ApiRequestData=apirequestdata;
         //3.执行接口测试
         ApiBizResponseData responseData = ApiTestHelper.ExcuteApiTset();
