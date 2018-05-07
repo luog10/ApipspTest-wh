@@ -4,12 +4,23 @@ import ApiTestUtility.ApiBizResponseData;
 import ApiTestUtility.ApiRequestData;
 import ApiTestUtility.ApiTestHelper;
 import com.test.utility.FileOpHelper;
+import com.test.utility.JsonHelper;
 import com.test.utility.RequestType;
 import com.test.utility.TestResultType;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class TestVendorRecord {
+
+    @Test
+    public  void  TestJsonDeserialize(){
+        String Jsonstr = "{\"Code\":0,\"Message\":\"\",\"Result\":{\"SONO\":\"a15\" }}";
+        ApiBizResponseData TestResult = JsonHelper.JsonDeserialize(Jsonstr,ApiBizResponseData.class);
+        Object s = TestResult.GetResult();
+        s.toString();
+        System.out.println(s.toString());
+        System.out.println(s.toString().contains("a15"));
+    }
 
     @Test
     //测试创建新商家
@@ -37,8 +48,10 @@ public class TestVendorRecord {
             Assert.assertEquals(responseData.GetCode(),"0");
             ApiTestHelper.RecordTestResult(TestResultType.Pass, "测试通过");
         }
-        catch (AssertionError ex)
-        {
+        catch (AssertionError ex) {
+            ApiTestHelper.RecordTestResult(TestResultType.Failed, "测试未通过"+ ex.getMessage());
+        }
+        catch (Exception ex){
             ApiTestHelper.RecordTestResult(TestResultType.Failed, "测试未通过"+ ex.getMessage());
         }
     }
