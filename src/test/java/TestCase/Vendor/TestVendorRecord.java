@@ -50,9 +50,7 @@ public class TestVendorRecord {
         }
         catch (AssertionError ex) {
             ApiTestHelper.RecordTestResult(TestResultType.Failed, "测试未通过"+ ex.getMessage());
-        }
-        catch (Exception ex){
-            ApiTestHelper.RecordTestResult(TestResultType.Failed, "测试未通过"+ ex.getMessage());
+            Assert.fail();
         }
     }
 }
